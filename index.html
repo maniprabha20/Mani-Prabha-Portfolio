@@ -4,7 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Maniprabha S | Full Stack Developer</title>
+<title>Maniprabha S | Web Developer & Aspiring Software Developer</title>
+
+<!-- Enables scroll/entrance animations only when JavaScript is running -->
+<script>document.documentElement.classList.add('js');</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,6 +34,9 @@
 
     --border:rgba(0,229,255,.15);
     --border-hover:rgba(0,229,255,.48);
+
+    /* animation easing (added) */
+    --ease:cubic-bezier(.22,1,.36,1);
 }
 
 *{
@@ -1625,6 +1631,138 @@ footer{
     }
 }
 
+/* =====================================================
+   ANIMATIONS (added)
+   - Uses the individual `translate` property so it never
+     conflicts with the existing hover / tilt `transform`.
+   - Everything below is skipped for prefers-reduced-motion.
+===================================================== */
+
+@keyframes rise{
+    from{
+        opacity:0;
+        translate:0 26px;
+    }
+    to{
+        opacity:1;
+        translate:0 0;
+    }
+}
+
+@keyframes navIn{
+    from{
+        opacity:0;
+        translate:0 -14px;
+    }
+    to{
+        opacity:1;
+        translate:0 0;
+    }
+}
+
+@media (prefers-reduced-motion:no-preference){
+
+    /* ---------- Navbar + hero entrance on load ---------- */
+
+    .js nav{
+        animation:navIn .8s var(--ease) both;
+    }
+
+    .js .hero-small{
+        animation:rise .9s var(--ease) .15s both;
+    }
+
+    .js .hero h1{
+        animation:rise .9s var(--ease) .3s both;
+    }
+
+    .js .hero-role{
+        animation:rise .9s var(--ease) .45s both;
+    }
+
+    .js .hero-description{
+        animation:rise .9s var(--ease) .6s both;
+    }
+
+    .js .hero-buttons{
+        animation:rise .9s var(--ease) .75s both;
+    }
+
+    .js .profile-wrap{
+        animation:rise 1s var(--ease) .5s both;
+    }
+
+    /* ---------- Scroll reveal ---------- */
+
+    .js :is(
+        .section-heading,
+        .proficiency-heading,
+        .contact-header,
+        .about-text p,
+        .highlight,
+        .proficiency-item,
+        .skill-card,
+        .project-card,
+        .timeline-item,
+        .cert-card,
+        .contact-card,
+        .contact-item,
+        .social,
+        .email-button
+    ){
+        opacity:0;
+        translate:0 26px;
+    }
+
+    .js :is(
+        .section-heading,
+        .proficiency-heading,
+        .contact-header,
+        .about-text p,
+        .highlight,
+        .proficiency-item,
+        .skill-card,
+        .project-card,
+        .timeline-item,
+        .cert-card,
+        .contact-card,
+        .contact-item,
+        .social,
+        .email-button
+    ).is-in{
+        opacity:1;
+        translate:0 0;
+        animation:rise .85s var(--ease) var(--d,0s) backwards;
+    }
+
+    /* Timeline line draws downward when it enters view */
+
+    .js .timeline::before{
+        transform:scaleY(0);
+        transform-origin:top;
+        transition:transform 1.4s var(--ease) .1s;
+    }
+
+    .js .timeline.is-in::before{
+        transform:scaleY(1);
+    }
+}
+
+@media (prefers-reduced-motion:reduce){
+
+    html{
+        scroll-behavior:auto;
+    }
+
+    .progress-bar{
+        transition:none;
+    }
+
+    .contact-icon{
+        animation:none;
+    }
+}
+
 </style>
 </head>
 
@@ -1749,7 +1887,7 @@ Maniprabha S
 </strong>
 
 <span>
-Full Stack Developer · Fresher
+Web Developer � Fresher
 </span>
 
 </div>
@@ -2218,7 +2356,7 @@ document analysis, question answering and page-level citations.
 
 <div class="project-links">
 
-<a href="#" class="project-button">
+<a href="#" target="_blank" rel="noopener noreferrer" class="project-button">
 GitHub ↗
 </a>
 
@@ -2259,7 +2397,7 @@ loyalty pricing and WhatsApp notifications.
 
 <div class="project-links">
 
-<a href="#" class="project-button">
+<a href="#" target="_blank" rel="noopener noreferrer" class="project-button">
 GitHub ↗
 </a>
 
@@ -2310,7 +2448,7 @@ GitHub ↗
 
 </a>
 
-<a href="#" class="project-button">
+<a href="https://ordermetrics360-cc8l8fgsfkpewwbf43bem6.streamlit.app/" target="_blank" rel="noopener noreferrer" class="project-button">
 Dashboard ↗
 </a>
 
@@ -2319,50 +2457,7 @@ Dashboard ↗
 </div>
 
 
-<div class="project-card">
-
-<span class="project-number">
-PROJECT 04
-</span>
-
-<h3>
-Placement Prediction
-</h3>
-
-<p>
-Explainable machine learning system for predicting placement
-readiness using academic, assessment and skill-related features.
-</p>
-
-<div class="project-tech">
-
-<span>Python</span>
-<span>Scikit-learn</span>
-<span>XGBoost</span>
-<span>SHAP</span>
-
-</div>
-
-<div class="project-links">
-
-<a href="#" class="project-button">
-GitHub ↗
-</a>
-
-<a href="#" class="project-button">
-Research ↗
-</a>
-
-</div>
-
-</div>
-
-
-</div>
-
-</div>
-
-</section>
+</div></div></section>
 
 
 <!-- =========================
@@ -2939,7 +3034,7 @@ Send Me an Email
 
 <div class="container">
 
-© 2026 Maniprabha S · Full Stack Developer
+© 2026 Maniprabha S � Web Developer
 
 </div>
 
@@ -2948,13 +3043,19 @@ Send Me an Email
 
 <script>
 
+const reduceMotion =
+    window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    ).matches;
+
 /* =========================
    ROLE TYPING
+   (starts just after the hero entrance)
 ========================= */
 
 const roles = [
-    "Full Stack Developer",
-    "Aspiring Software Developer"
+    "a Web Developer",
+    "an Aspiring Software Developer"
 ];
 
 const roleText =
@@ -3029,51 +3130,148 @@ function typeRole(){
     }
 }
 
-typeRole();
+setTimeout(typeRole, reduceMotion ? 0 : 800);
 
 
 /* =========================
    PROFICIENCY ANIMATION
+   (same percentages, now staggered)
 ========================= */
 
 const proficiencySection =
     document.querySelector(".proficiency");
 
-const observer =
-    new IntersectionObserver(
-        entries => {
+function fillBars(){
 
-            entries.forEach(entry => {
+    document
+    .querySelectorAll(".progress-bar")
+    .forEach((bar, i) => {
 
-                if(entry.isIntersecting){
-
-                    document
-                    .querySelectorAll(".progress-bar")
-                    .forEach(bar => {
-
-                        bar.style.width =
-                            bar.dataset.width;
-
-                    });
-
-                    observer.unobserve(
-                        entry.target
-                    );
-                }
-
-            });
-
-        },
-        {
-            threshold:.25
+        if(!reduceMotion){
+            bar.style.transitionDelay =
+                (0.25 + i * 0.12) + "s";
         }
+
+        bar.style.width =
+            bar.dataset.width;
+
+    });
+}
+
+if(!("IntersectionObserver" in window) || reduceMotion){
+
+    fillBars();
+
+}else{
+
+    const observer =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if(entry.isIntersecting){
+
+                        fillBars();
+
+                        observer.unobserve(
+                            entry.target
+                        );
+                    }
+
+                });
+
+            },
+            {
+                threshold:.25
+            }
+        );
+
+    if(proficiencySection){
+
+        observer.observe(
+            proficiencySection
+        );
+    }
+}
+
+
+/* =========================
+   SCROLL REVEAL
+   Headings first, then content in staggered order
+========================= */
+
+const revealSelector = [
+    ".section-heading",
+    ".proficiency-heading",
+    ".contact-header",
+    ".about-text p",
+    ".highlight",
+    ".proficiency-item",
+    ".skill-card",
+    ".project-card",
+    ".timeline-item",
+    ".cert-card",
+    ".contact-card",
+    ".contact-item",
+    ".social",
+    ".email-button"
+].join(",");
+
+const revealTargets =
+    document.querySelectorAll(
+        revealSelector + ", .timeline"
     );
 
-if(proficiencySection){
+if(!("IntersectionObserver" in window) || reduceMotion){
 
-    observer.observe(
-        proficiencySection
-    );
+    revealTargets.forEach(el => {
+        el.classList.add("is-in");
+    });
+
+}else{
+
+    const revealObserver =
+        new IntersectionObserver(
+            entries => {
+
+                /* Elements entering together are animated
+                   in document order, one after another. */
+
+                const visible =
+                    entries
+                    .filter(e => e.isIntersecting)
+                    .map(e => e.target)
+                    .sort((a, b) =>
+                        a.compareDocumentPosition(b) &
+                        Node.DOCUMENT_POSITION_FOLLOWING
+                            ? -1
+                            : 1
+                    );
+
+                visible.forEach((el, i) => {
+
+                    el.style.setProperty(
+                        "--d",
+                        Math.min(i * 0.09, 0.55) + "s"
+                    );
+
+                    el.classList.add("is-in");
+
+                    revealObserver.unobserve(el);
+
+                });
+
+            },
+            {
+                threshold:.12,
+                rootMargin:"0px 0px -6% 0px"
+            }
+        );
+
+    revealTargets.forEach(el => {
+        revealObserver.observe(el);
+    });
 }
 
 
@@ -3198,7 +3396,10 @@ document
 
 /* =========================
    CARD MOUSE EFFECT
+   (unchanged; skipped for reduced motion)
 ========================= */
+
+if(!reduceMotion){
 
 document
 .querySelectorAll(
@@ -3247,7 +3448,19 @@ document
 
 });
 
+}
+
 </script>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
