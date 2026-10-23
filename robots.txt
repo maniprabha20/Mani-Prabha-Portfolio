@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://maniprabha20.github.io/Mani-Prabha-Portfolio/sitemap.xml
